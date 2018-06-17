@@ -1,7 +1,7 @@
 #######PREPARATION SECTION######################
 
 #This tells the compiler the folder to find the CSV files.
-setwd("~/Actual Documents/R Programing studies/Stock price prediction script")
+setwd("~/Documents/R Programing studies/Stock price predictor script")
 
 #Loads the stringr Library so that we can use str_detect function
 library(stringr)
