@@ -1,7 +1,7 @@
 #######PREPARATION SECTION######################
 
 #This tells the compiler the folder to find the CSV files.
-setwd("~/Documents/R Programing studies/Stock price predictor script")
+setwd("~/Actual Documents/R Programing studies/Stock price prediction script")
 
 #Loads the stringr Library so that we can use str_detect function
 library(stringr)
@@ -12,20 +12,38 @@ library(randomForest)
 #visual graphing library
 library(ggplot2)
 
+#sets up loops
+i=1
 
 #######END OF PREP SECTION######################
 
+
+Source.Vector= c("AAPL ALL DATA.CSV"
+                 ,"AAPL Balance sheet.csv"
+                 ,"AAPL BS % of Total Assets.csv"
+                 ,"AAPL CF.csv"
+                 ,"AAPL Income statement.csv"
+                 ,"AAPL IS % of Total Revenue.csv"
+                 ,"AAPL stock prices.csv")
+                 
+
+while (i < 7) {
+
+str(Source.Vector)
 #load raw data from CSV files into this script. USE GENERAL # FORMAT IN EXCEL
-train.df = read.csv("AAPL ALL DATA.CSV"
-                 , header = TRUE #says the first row contains names
-                 , row.names = 1 #says which column contains the row names
-                  
-                  )
+
+
+
+train.df = read.csv(Source.Vector[i],
+                    , header = TRUE #says the first row contains names
+                    , row.names = 1 #says which column contains the row names
+                    
+)
 
 #load stock price data
 historic.stock.prices = read.csv("AAPL stock prices.csv"
-                          , header=TRUE
-                          , row.names = 1)
+                                 , header=TRUE
+                                 , row.names = 1)
 
 
 
@@ -45,7 +63,7 @@ Model.Data = randomForest(x = train.df		#sets independent variables
                           , y = rf.label 	#sets dependent variable
                           , importance = TRUE
                           , ntree = 10000 	#Number of decision trees to create
-                          )
+)
 
 #Output Model Data information
 Model.Data
@@ -56,9 +74,10 @@ varImpPlot(Model.Data
            , scale = TRUE
            , cex = .5) #cex = text size
 
+i = i+1
 
+}
 
-#Change line 19 input to create plots for the other data files.
 
 
 
